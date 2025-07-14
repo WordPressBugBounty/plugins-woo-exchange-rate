@@ -20,7 +20,11 @@ class Order_Manager {
      * @param array $posted Array of posted form data
      */
     public function checkout_update_order_meta($order_id, $posted) {
-        update_post_meta($order_id, '_order_currency', Currency_Manager::get_currency_code());
+        $order = wc_get_order($order_id);
+        if ($order) {
+            $order->set_currency(Currency_Manager::get_currency_code());
+            $order->save();
+        }
     }
     
     /**

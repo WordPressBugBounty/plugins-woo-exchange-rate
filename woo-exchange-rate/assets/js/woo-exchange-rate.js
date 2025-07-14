@@ -3,7 +3,8 @@ jQuery(function($) {
     var currency_code = $(wooer_widget_id).val();
     var data = {
         'action': 'change_currency_action',
-        'currency_code': currency_code
+        'currency_code': currency_code,
+        'nonce': woo_exchange_rate.nonce
     };
     
     //global wc_cart_fragments_params

@@ -13,8 +13,8 @@ class Exchange_Rate_Settings_Page_Table extends \WP_List_Table {
      */
     public function __construct() {
         parent::__construct(array(
-            'singular' => __('Currency', 'woocommerce'),
-            'plural' => __('Currencies', 'woocommerce'),
+            'singular' => __('Currency', 'woo-exchange-rate'),
+            'plural' => __('Currencies', 'woo-exchange-rate'),
             'ajax' => false
         ));
     }
@@ -27,8 +27,8 @@ class Exchange_Rate_Settings_Page_Table extends \WP_List_Table {
     public function get_columns() {
         return array(
             'cb' => '<input type="checkbox" />',
-            'currency_code' => __('Currency', 'woocommerce'),
-            'currency_pos' => __( 'Currency Position', 'woocommerce' ),
+            'currency_code' => __('Currency', 'woo-exchange-rate'),
+            'currency_pos' => __( 'Currency Position', 'woo-exchange-rate' ),
             'currency_exchange_rate' => __('Exchange rate', 'woo-exchange-rate'),
         );
     }
@@ -63,11 +63,12 @@ class Exchange_Rate_Settings_Page_Table extends \WP_List_Table {
 
         // Get actions
         $actions = array(
-            'id' => sprintf(__('ID: %d', 'woocommerce'), $key['id']),
-            'edit' => '<a href="' . esc_url($url) . '">' . __('View/Edit', 'woocommerce') . '</a>',
-            'trash' => '<a class="submitdelete" title="' . esc_attr__('Revoke API Key', 'woocommerce') .
+            /* translators: %d: Currency ID */
+            'id' => sprintf(__('ID: %d', 'woo-exchange-rate'), $key['id']),
+            'edit' => '<a href="' . esc_url($url) . '">' . __('View/Edit', 'woo-exchange-rate') . '</a>',
+            'trash' => '<a class="submitdelete" title="' . esc_attr__('Revoke API Key', 'woo-exchange-rate') .
             '" href="' . esc_url(wp_nonce_url(add_query_arg(array('remove-id' => $key['id']), $home_url), 'remove')) . '">' .
-            __('Remove', 'woocommerce') . '</a>'
+            __('Remove', 'woo-exchange-rate') . '</a>'
         );
 
         $row_actions = array();
@@ -110,7 +111,7 @@ class Exchange_Rate_Settings_Page_Table extends \WP_List_Table {
      */
     protected function get_bulk_actions() {
         return array(
-            'remove' => __('Remove', 'woocommerce')
+            'remove' => __('Remove', 'woo-exchange-rate')
         );
     }
 

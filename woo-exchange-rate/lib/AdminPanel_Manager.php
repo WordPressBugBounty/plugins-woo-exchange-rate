@@ -21,8 +21,22 @@ class AdminPanel_Manager {
         
         // Adding toolbar menu
         add_action('admin_bar_menu', array($self, 'admin_bar_menu'), 999);
+        add_filter( 'plugin_action_links_' . WOOER_PLUGIN_BASENAME . '', array( $self, 'plugin_row_meta' ) );
     }
+    /**
+	 * Add Pro version link into the plugin row meta
+	 *
+	 * @param  [type] $links
+	 * @return void
+	 */
+	public function plugin_row_meta( $links ) {
+		$row_meta = array(
+			'woo-exchange-rate' => '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=products&section=woo-exchange-rate' ) . '">Exchange Rates</a>',
+            
+		);
 
+		return array_merge( $links, $row_meta );
+	}
     public function setup_sections($sections) {
         $sections[Exchange_Rate_Settings_Page::SECTION] = __('Exchange Rates', 'woo-exchange-rate');
         return $sections;
@@ -83,7 +97,7 @@ class AdminPanel_Manager {
 
         $args = array(
             'id' => 'wooer_currency',
-            'title' => sprintf('%s (%s)', __('Currency', 'woocommerce'),  get_woocommerce_currency_symbol($current)),
+            'title' => sprintf('%s (%s)', __('Currency', 'woo-exchange-rate'),  get_woocommerce_currency_symbol($current)),
         );
         $wp_admin_bar->add_node($args);
 

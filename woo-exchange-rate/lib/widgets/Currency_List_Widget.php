@@ -46,7 +46,7 @@ class Currency_List_Widget extends \WC_Widget {
         }
 
         $settings[] = array(
-            'name' => __('Currency', 'woocommerce'),
+            'name' => __('Currency', 'woo-exchange-rate'),
             'id' => 'wooer_currency_code',
             'type' => 'select',
             'options' => $list_data,
